@@ -2,6 +2,7 @@ from enum import Enum
 import sqlite3
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from typing import Literal
+import json
 
 HOSTNAME = "localhost"
 PORT = 8080
@@ -19,7 +20,7 @@ def close_db(db: sqlite3.Connection) -> None:
 
 
 def format_as_json(items: list) -> str:
-    return f'{{"response": { [item[0] for item in items] }}}'
+    return json.dumps({"response": [item[0] for item in items]})
 
 
 class ResponseType(Enum):
@@ -83,10 +84,12 @@ class WebServer(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         type = self.determine_type()
         if type == ResponseType.UNKNOWN:
+            print(f"Response 404")
             self.send_response(400)
             self.end_headers()
         elif type == ResponseType.LAYOUT:
             code, response = self.layout_GET()
+            print(f"Response LAYOUT {code} {response}")
             self.send_response(code)
             self.send_header("Content-type", "application/json")
             self.end_headers()
@@ -94,6 +97,7 @@ class WebServer(BaseHTTPRequestHandler):
                 self.wfile.write(bytes(response, "utf-8"))
         elif type == ResponseType.USER:
             code, response = self.user_GET()
+            print(f"Response USER {code} {response}")
             self.send_response(code)
             self.send_header("Content-type", "application/json")
             self.end_headers()
@@ -107,4 +111,5 @@ if __name__ == "__main__":
     try:
         server.serve_forever()
     except KeyboardInterrupt:
+        print("\nServer closing")
         server.server_close()
