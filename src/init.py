@@ -4,9 +4,109 @@ db = sqlite3.connect("src/database.db")
 
 cur = db.cursor()
 
-JSON = str(
-    '{ "template-html.j2": [ "index.html", [ { "type": "column", "size": 1, "content": [ { "type": "row", "size": 1, "content": [ { "type": "scrolling horizontal", "content": { "type": "rss", "format": "${title} - ${description} - ", "length": 5, "url": "http://feeds.bbci.co.uk/news/rss.xml" }, "style": { "font-family": "Arial", "font-size": "30px", "color": "blue" }, "container_style": {}, "time": 0.5 } ] }, { "type": "row", "size": 1, "content": [ { "type": "scrolling vertical", "content": { "type": "text", "content": "This is some sample text to show on the screen." }, "style": { "font-family": "Arial", "font-size": "50px", "color": "blue" }, "container_style": { "background-image": "url(https://picsum.photos/800/600)", "background-repeat": "no-repeat", "background-size": "contain", "background-position": "center" }, "time": 0.5 } ] } ] }, { "type": "column", "size": 1, "content": [ { "type": "slideshow", "content": [ { "type": "image", "content": "https://picsum.photos/800/600", "time": 3000 }, { "type": "video", "content": "https://archive.org/download/electricsheep-flock-247-62500-7/00247%3D62517%3D62283%3D62016.mp4" }, { "type": "image", "content": "https://picsum.photos/800/600", "time": 3000 } ], "style": {}, "container_style": {} } ] }, { "type": "column", "size": 1, "content": [ { "type": "row", "size": 1, "content": [ { "type": "clock", "format": "${wday} ${date} ${mname} ${year}, ${h24}:${min}:${sec}", "style": { "font-family": "Arial", "font-size": "30px", "color": "blue" }, "container_style": {} } ] }, { "type": "row", "size": 1, "content": [ { "type": "video", "content": "https://www.w3schools.com/tags/movie.mp4", "style": {}, "container_style": { "background-color": "#d94ea4" } } ] } ] } ] ] }'
-)
+JSON = '{ "template-html.j2": [ "index.html", [ { "type": "column", "size": 1, "content": [ { "type": "row", "size": 1, "content": [ { "type": "scrolling horizontal", "content": { "type": "rss", "format": "${title} - ${description} - ", "length": 5, "url": "http://feeds.bbci.co.uk/news/rss.xml" }, "style": { "font-family": "Arial", "font-size": "30px", "color": "blue" }, "container_style": {}, "time": 0.5 } ] }, { "type": "row", "size": 1, "content": [ { "type": "scrolling vertical", "content": { "type": "text", "content": "This is some sample text to show on the screen." }, "style": { "font-family": "Arial", "font-size": "50px", "color": "blue" }, "container_style": { "background-image": "url(https://picsum.photos/800/600)", "background-repeat": "no-repeat", "background-size": "contain", "background-position": "center" }, "time": 0.5 } ] } ] }, { "type": "column", "size": 1, "content": [ { "type": "slideshow", "content": [ { "type": "image", "content": "https://picsum.photos/800/600", "time": 3000 }, { "type": "video", "content": "https://archive.org/download/electricsheep-flock-247-62500-7/00247%3D62517%3D62283%3D62016.mp4" }, { "type": "image", "content": "https://picsum.photos/800/600", "time": 3000 } ], "style": {}, "container_style": {} } ] }, { "type": "column", "size": 1, "content": [ { "type": "row", "size": 1, "content": [ { "type": "clock", "format": "${wday} ${date} ${mname} ${year}, ${h24}:${min}:${sec}", "style": { "font-family": "Arial", "font-size": "30px", "color": "blue" }, "container_style": {} } ] }, { "type": "row", "size": 1, "content": [ { "type": "video", "content": "https://www.w3schools.com/tags/movie.mp4", "style": {}, "container_style": { "background-color": "#d94ea4" } } ] } ] } ] ] }'
+
+JSON2 = '''{
+    "template-html.j2": [
+        "index.html",
+        [
+            {
+                "type": "row",
+                "size": 9,
+                "content": [
+                    {
+                        "type": "column",
+                        "size": 2,
+                        "content": [
+                            {
+                                "type": "row",
+                                "size": 1,
+                                "content": {
+                                    "type": "empty",
+                                    "container-style": {
+                                        "background-color": "red"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "row",
+                                "size": 6,
+                                "content": {
+                                    "type": "empty",
+                                    "container-style": {
+                                        "background-color": "blue"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "column",
+                        "size": 1,
+                        "content": [
+                            {
+                                "type": "row",
+                                "size": 3,
+                                "content": {
+                                    "type": "empty",
+                                    "container-style": {
+                                        "background-color": "green"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "row",
+                                "size": 1,
+                                "content": {
+                                    "type": "empty",
+                                    "container-style": {
+                                        "background-color": "yellow"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "row",
+                                "size": 16,
+                                "content": {
+                                    "type": "empty",
+                                    "container-style": {
+                                        "background-color": "orange"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "row",
+                "size": 1,
+                "content": [
+                    {
+                        "type": "column",
+                        "size": 1,
+                        "content": {
+                            "type": "empty",
+                            "container-style": {
+                                "background-color": "purple"
+                            }
+                        }
+                    },
+                    {
+                        "type": "column",
+                        "size": 9,
+                        "content": {
+                            "type": "empty",
+                            "container-style": {
+                                "background-color": "pink"
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    ]
+}'''
 
 # cur.execute(
 #     "CREATE TABLE users (user_ID INTEGER PRIMARY KEY, username TEXT UNIQUE, password TEXT)"
@@ -22,7 +122,8 @@ JSON = str(
 #     "INSERT INTO users VALUES (1, 'bob', '$2b$12$qkZCT9kG8Llw2ON0BlgROeFvJkWM.jRMGqgilypK1JAaljkGetiX.')"
 # )
 
-cur.execute("DELETE FROM content")
-cur.execute("INSERT INTO content VALUES (1, ?)", (JSON, ))
+#cur.execute("DELETE FROM content")
+cur.execute("INSERT INTO layouts VALUES (2, 'sixth-form', 1)")
+cur.execute("INSERT INTO content VALUES (2, ?)", (JSON2, ))
 
 db.commit()
